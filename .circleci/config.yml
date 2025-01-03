@@ -17,7 +17,10 @@ jobs:
           command: which ruby
       - run:
           name: "Show rails version"
-          command: rails --version
+          command: /project/bin/rails --version
+      - run:
+          name: "rubocop"
+          command: /project/bin/rubocop
 
 workflows:
   say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
