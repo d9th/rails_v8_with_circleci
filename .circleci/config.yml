@@ -4,8 +4,10 @@ orbs:
 
 jobs:
   hello-ruby:
-    docker:
-      - image: cimg/ruby:3.3.6
+    executor:
+      name: ruby/default
+      tag: '3.3.6'
+
     steps:
       - checkout
       - ruby/install-deps
@@ -23,7 +25,6 @@ jobs:
           command: ~/project/bin/rubocop
 
 workflows:
-  say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  say-hello-workflow:
     jobs:
       - hello-ruby
