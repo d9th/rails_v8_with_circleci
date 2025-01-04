@@ -50,12 +50,11 @@ jobs:
           command: pwd
       - run:
           name: "checking Rubocop version"
-          command: bin/rubocop --version
-      - ruby/rubocop-check
-
+          command: bundle exec rubocop -v
+      # - ruby/rubocop-check
 
 workflows:
-  say-hello-workflow:
+  build_and_test:
     jobs:
       - prepare_ruby
       - checking_env:
