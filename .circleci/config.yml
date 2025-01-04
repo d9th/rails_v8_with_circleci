@@ -3,14 +3,25 @@ orbs:
   ruby: circleci/ruby@2.3.1
 
 jobs:
-  hello-ruby:
+  prepare_ruby:
     executor:
       name: ruby/default
       tag: '3.3.6'
-
     steps:
       - checkout
       - ruby/install-deps
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - .
+
+  checking_env:
+    executor:
+      name: ruby/default
+      tag: '3.3.6'
+    steps:
+      - attach_workspace:
+          at: ~/project
       - run:
           name: "Show ruby version"
           command: ruby --version
@@ -30,7 +41,11 @@ jobs:
           name: "rubocop"
           command: ~/project/bin/rubocop
 
+
 workflows:
   say-hello-workflow:
     jobs:
-      - hello-ruby
+      - prepare_ruby
+      - checking_env:
+          requires:
+            - prepare_ruby
