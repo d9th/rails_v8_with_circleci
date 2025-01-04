@@ -45,6 +45,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
+      - run:
+          name: "checking current dir"
+          command: pwd
       - ruby/rubocop-check
 
 
