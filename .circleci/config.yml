@@ -45,9 +45,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/project
-      - run:
-          name: 'Run Rubocop'
-          command: ~/project/bin/rubocop
+      - ruby/rubocop-check
 
 
 workflows:
