@@ -18,6 +18,12 @@ jobs:
           name: "Which ruby"
           command: which ruby
       - run:
+          name: "Checking OpenSSL"
+          command: which openssl
+      - run:
+          name: "Checking OpenSSL version"
+          command: openssl version
+      - run:
           name: "Show rails version"
           command: ~/project/bin/rails --version
       - run:
