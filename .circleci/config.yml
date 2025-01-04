@@ -37,8 +37,16 @@ jobs:
       - run:
           name: "Show rails version"
           command: ~/project/bin/rails --version
+
+  run_rubocop:
+    executor:
+      name: ruby/default
+      tag: '3.3.6'
+    steps:
+      - attach_workspace:
+          at: ~/project
       - run:
-          name: "rubocop"
+          name: 'Run Rubocop'
           command: ~/project/bin/rubocop
 
 
@@ -47,5 +55,8 @@ workflows:
     jobs:
       - prepare_ruby
       - checking_env:
+          requires:
+            - prepare_ruby
+      - run_rubocop:
           requires:
             - prepare_ruby
