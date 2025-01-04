@@ -51,6 +51,9 @@ jobs:
       - run:
           name: "checking Rubocop version"
           command: bundle exec rubocop -v
+      - run:
+          name: "Run rubocop"
+          command: bundle exec rubocop
       # - ruby/rubocop-check
 
 workflows:
