@@ -48,6 +48,9 @@ jobs:
       - run:
           name: "checking current dir"
           command: pwd
+      - run:
+          name: "checking Rubocop version"
+          command: bin/rubocop --version
       - ruby/rubocop-check
 
 
